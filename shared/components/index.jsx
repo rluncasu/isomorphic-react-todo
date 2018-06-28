@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 
 export default class MainView extends React.Component {
   
-  // using React's type checking ... defining data types of the properties
   static propTypes = {
     children: PropTypes.object
   };
@@ -10,7 +9,7 @@ export default class MainView extends React.Component {
   render() {
     return (
       <div id="main-view">
-        <h1>Todos</h1>
+        <h1>Probleme de rezolvat</h1>
 
         <hr />
 
