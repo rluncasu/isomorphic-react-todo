@@ -8,6 +8,8 @@ import routes from 'routes';
 import immutifyState from 'lib/immutifyState';
 import { createStore, combineReducers } from 'redux';
 
+require('./main.css');
+
 const initialState = immutifyState(window.__INITIAL_STATE__);
 
 const history = createBrowserHistory();

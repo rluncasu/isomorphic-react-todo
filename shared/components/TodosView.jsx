@@ -26,26 +26,26 @@ export default class TodosView extends React.Component {
 
   render() {
     const btnStyle = {
-      margin: '1em 0 1em 1em'
+      margin: '1em 0 1em 1em',
+      'border-color': 'green'
     };
 
     return (
-      <div id="todos-list">
+      <ul className="todo-list ui-sortable">
         {this.props.todos.map((todo, index) => {
           return (
-            <div style={btnStyle} key={index}>
-              <span>{todo}</span>
-
-              <button style={btnStyle} data-id={index} onClick={this.handleDelete}>
+            <li style={btnStyle} key={index} className="">
+              <span className="text">{todo}</span>
+              <button className="btn btn-outline-danger" data-id={index} onClick={this.handleDelete}>
                 X
               </button>
               <button style={btnStyle} data-id={index} onClick={this.handleEdit}>
-                Edit
+                <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
               </button>
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
     );
   }
 }

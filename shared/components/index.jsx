@@ -7,13 +7,20 @@ export default class MainView extends React.Component {
 
   render() {
     return (
-      <div id="main-view">
-        <h1>Probleme de rezolvat</h1>
-
-        <hr />
-
-        {this.props.children}
+      <div className="row" id="main-view">
+        <div className="col-md-6">
+          <div className="box box-aqua">
+            <div className="box-header ui-sortable-handle">
+              <i className="ion ion-clipboard"></i>
+              <h3 className="box-title">To Do List</h3>
+            </div>
+            <div className="box-body">
+              {this.props.children}
+            </div>
+          </div>
+        </div>
       </div>
+
     );
   }
 }

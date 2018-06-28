@@ -24,7 +24,6 @@ app.use((req, res) => {
   const reducer = combineReducers(reducers);
 
   const store = createStore(reducer);
-
   match({ routes, location }, (err, redirectLocation, renderProps) => {
     if (err) {
       console.error(err);
@@ -46,15 +45,15 @@ app.use((req, res) => {
       );
       const componentHTML = renderToString(InitialView);
 
-      const initialState = store.getState();
+      const initialState = {todos:['item1','item2']};
 
       const HTML = `
       <!DOCTYPE html>
       <html>
         <head>
           <meta charset="utf-8">
-          <title>Redux Demo</title>
-
+          <title>Aplicatii Isomorfice ReactJs</title>
+          <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
           <script>
             window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
           </script>

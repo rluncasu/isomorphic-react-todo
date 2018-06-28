@@ -1,8 +1,8 @@
-import webpack              from 'webpack';
-import assign               from 'object-assign';
+import webpack from 'webpack';
+import assign from 'object-assign';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import prodCfg              from './webpack.prod.config.js';
+import prodCfg from './webpack.prod.config.js';
 
 Object.assign = assign;
 
@@ -18,37 +18,34 @@ const BABEL_QUERY = {
         transforms: [
           {
             transform: 'react-transform-hmr',
-            imports:    ['react'],
-            locals:     ['module']
+            imports: ['react'],
+            locals: ['module']
           }
         ]
       }
     ]
   ]
-}
+};
 
 export default function(app) {
   const config = Object.assign(prodCfg, {
     devtool: 'inline-source-map',
-    entry:   [
-      'webpack-hot-middleware/client',
-      './client'
-    ],
+    entry: ['webpack-hot-middleware/client', './client'],
     module: {
       loaders: [
         {
-          test:    /\.jsx?$/,
+          test: /\.jsx?$/,
           exclude: /node_modules/,
-          loader:  'babel',
-          query:   BABEL_QUERY
-        }
+          loader: 'babel',
+          query: BABEL_QUERY
+        },
+        { test: /\.css$/, loaders: ['style-loader', 'css-loader'] }
       ]
     },
     plugins: [
-      new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin()
-    ],
+    ]
   });
 
   const compiler = webpack(config);
