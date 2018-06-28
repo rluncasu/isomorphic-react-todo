@@ -1,15 +1,14 @@
-import express                   from 'express';
-import React                     from 'react';
-import { renderToString }        from 'react-dom/server'
+import express from 'express';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
 import { RoutingContext, match } from 'react-router';
-import createLocation            from 'history/lib/createLocation';
-import routes                    from './shared/routes';
-import { Provider }              from 'react-redux';
-import * as reducers             from 'reducers';
-import fetchComponentData        from 'lib/fetchComponentData';
-import { createStore,
-         combineReducers}       from 'redux';
-import path                      from 'path';
+import createLocation from 'history/lib/createLocation';
+import routes from './shared/routes';
+import { Provider } from 'react-redux';
+import * as reducers from 'reducers';
+import fetchComponentData from 'lib/fetchComponentData';
+import { createStore, combineReducers } from 'redux';
+import path from 'path';
 
 const app = express();
 
@@ -19,29 +18,27 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.use( (req, res) => {
+app.use((req, res) => {
   const location = createLocation(req.url);
 
-  const reducer  = combineReducers(reducers);
+  const reducer = combineReducers(reducers);
 
-  const store    = createStore(reducer);
+  const store = createStore(reducer);
 
   match({ routes, location }, (err, redirectLocation, renderProps) => {
-    if(err) {
+    if (err) {
       console.error(err);
       return res.status(500).end('Internal server error');
     }
-    
-    if (redirectLocation){
+
+    if (redirectLocation) {
       const location = redirectLocation.pathname + redirectLocation.search;
       return res.redirect(302, location);
     }
 
-    if(!renderProps)
-      return res.status(404).end('Not found');
+    if (!renderProps) return res.status(404).end('Not found');
 
     function renderView() {
-
       const InitialView = (
         <Provider store={store}>
           <RoutingContext {...renderProps} />

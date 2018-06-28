@@ -2,7 +2,7 @@ export function getTodos() {
   return {
     type: 'GET_TODOS',
     date: Date.now()
-  }
+  };
 }
 
 export function createTodo(text) {
@@ -10,7 +10,7 @@ export function createTodo(text) {
     type: 'CREATE_TODO',
     text,
     date: Date.now()
-  }
+  };
 }
 export function editTodo(id, text) {
   return {

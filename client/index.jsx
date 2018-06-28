@@ -1,13 +1,12 @@
-import React                from 'react';
-import { render }           from 'react-dom';
-import { Router }           from 'react-router';
-import createBrowserHistory from 'history/lib/createBrowserHistory'
-import { Provider }         from 'react-redux';
-import * as reducers        from 'reducers';
-import routes               from 'routes';
-import immutifyState        from 'lib/immutifyState';
-import { createStore,
-         combineReducers }  from 'redux';
+import React from 'react';
+import { render } from 'react-dom';
+import { Router } from 'react-router';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
+import { Provider } from 'react-redux';
+import * as reducers from 'reducers';
+import routes from 'routes';
+import immutifyState from 'lib/immutifyState';
+import { createStore, combineReducers } from 'redux';
 
 const initialState = immutifyState(window.__INITIAL_STATE__);
 
@@ -15,7 +14,7 @@ const history = createBrowserHistory();
 
 const reducer = combineReducers(reducers);
 
-const store   = createStore(reducer, initialState);
+const store = createStore(reducer, initialState);
 
 // [routes] are defined externaly in [routes.jsx]
 render(
