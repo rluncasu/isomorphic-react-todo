@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 
 export default class TodosForm extends React.Component {
 
-  // using React's type checking ... defining data types of the properties
   static propTypes = {
     createTodo: PropTypes.func.isRequired
   };

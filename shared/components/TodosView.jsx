@@ -4,9 +4,8 @@ import Immutable     from 'immutable';
 
 export default class TodosView extends React.Component {
 
-  // using React's type checking ... defining data types of the properties
   static propTypes = {
-    todos:         PropTypes.instanceOf(Immutable.List).isRequired,
+    todos:      PropTypes.instanceOf(Immutable.List).isRequired,
     editTodo:   PropTypes.func.isRequired,
     deleteTodo: PropTypes.func.isRequired
   };
@@ -21,7 +20,6 @@ export default class TodosView extends React.Component {
     const id         = Number(e.target.dataset.id);
     const currentVal = this.props.todos.get(id);
 
-    // For a cutting edge UX
     let text = window.prompt('', currentVal);
 
     this.props.editTodo(id, text);
